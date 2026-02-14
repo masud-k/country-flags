@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import "./style/Country.css"
-const Country = ({country}) => {
-    console.log(country)
-    const {name, flags, area, capital, Population} = country;
+const Country = ({country, handleVisitedCountries}) => {
+    const {name, flags, area, capital, population} = country;
     const [visited, setVisited] = useState(false);
     const handleVisited = () => {
         setVisited(!visited);
+        handleVisitedCountries(country)
     }
+
     return (
         <div className={`country ${visited ? "visited" : ""}`}>
             <img className='image' src={flags.png} alt="" />
@@ -17,7 +18,7 @@ const Country = ({country}) => {
                 </div>
                 <div>
                     <p>Area: {area}</p>
-                    <p>Population: {Population}</p>
+                    <p>Population: {population}</p>
                 </div>
             </div>
             <button onClick={handleVisited}>{visited ? "Visited" : "Mark as Visited"}</button>
